@@ -1,0 +1,141 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Lato', sans-serif;
+}
+
+#containerD {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 2% 5%;
+    margin-top: 50px;
+}
+
+#imageSection {
+    width: 40%;
+    padding: 20px;
+}
+
+#imgDetails {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+#productDetails {
+    width: 60%;
+    padding: 20px;
+}
+
+#productDetails h1 {
+    font-size: 2.5em;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+#productDetails h4 {
+    font-size: 1.2em;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+#details {
+    margin: 20px 0;
+}
+
+#details h3 {
+    font-size: 1.5em;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+#details p {
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+#productPreview {
+    margin: 20px 0;
+}
+
+#productPreview h3 {
+    font-size: 1.2em;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.previewImg {
+    width: 60px;
+    height: 60px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: transform 0.3s, border 0.3s;
+    border: 1px solid #ddd;
+}
+
+.previewImg:hover {
+    transform: scale(1.1);
+    border: 1px solid #007bff;
+}
+
+#button {
+    margin-top: 30px;
+}
+
+#button button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    font-size: 1.1em;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+    width: 100%;
+    max-width: 300px;
+}
+
+#button button:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+}
+
+#button button:active {
+    transform: translateY(0);
+}
+
+@media (max-width: 768px) {
+    #containerD {
+        flex-direction: column;
+    }
+    
+    #imageSection, #productDetails {
+        width: 100%;
+    }
+    
+    .previewImg {
+        width: 50px;
+        height: 50px;
+    }
+    
+    #productDetails h1 {
+        font-size: 2em;
+    }
+}
+
+/* Add to cart button animation */
+@keyframes addToCart {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+#button button.added {
+    animation: addToCart 0.3s ease-in-out;
+    background-color: #28a745;
+} 

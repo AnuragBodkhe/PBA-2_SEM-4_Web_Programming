@@ -1,0 +1,140 @@
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: 'Lato', sans-serif;
+    background-color: #f5f5f5;
+}
+
+/* Main Container */
+#mainContainer {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Section Styles */
+.products-section {
+    margin-bottom: 40px;
+}
+
+h1 {
+    font-size: 28px;
+    font-weight: 600;
+    color: rgb(27, 25, 25);
+    margin: 30px 0;
+    text-transform: capitalize;
+    letter-spacing: 1px;
+}
+
+/* Product Grid */
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 30px;
+    padding: 0 20px;
+}
+
+/* Product Card */
+#box {
+    background-color: white;
+    border-radius: 5px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+}
+
+#box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Product Image */
+#box img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    display: block;
+}
+
+/* Product Details */
+#details {
+    padding: 15px;
+}
+
+#box h3 {
+    font-size: 16px;
+    margin-bottom: 8px;
+    color: #333;
+}
+
+#box h4 {
+    font-size: 14px;
+    color: #666;
+    font-weight: 400;
+    margin-bottom: 8px;
+}
+
+#box h2 {
+    font-size: 18px;
+    color: #1e88e5;
+    margin-bottom: 5px;
+}
+
+/* Links */
+#box a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Media Queries */
+@media (max-width: 1200px) {
+    #mainContainer {
+        padding: 15px;
+    }
+    
+    .products-grid {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    h1 {
+        font-size: 24px;
+        margin: 20px 0;
+    }
+    
+    .products-grid {
+        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+        gap: 15px;
+    }
+    
+    #box img {
+        height: 250px;
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 20px;
+    }
+    
+    .products-grid {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        gap: 10px;
+    }
+    
+    #box img {
+        height: 200px;
+    }
+    
+    #details {
+        padding: 10px;
+    }
+}
