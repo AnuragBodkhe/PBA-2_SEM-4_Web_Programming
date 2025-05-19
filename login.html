@@ -3,40 +3,65 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - Fashion Store</title>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Login | SHOPLANE</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" href="https://yt3.ggpht.com/a/AGF-l78km1YyNXmF0r3-0CycCA0HLA_i6zYn_8NZEg=s900-c-k-c0xffffffff-no-rj-mo" type="image/gif" sizes="16x16">
+    
+    <!-- CSS -->
     <link rel="stylesheet" href="css/login.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <script src="https://kit.fontawesome.com/4a3b1f73a2.js"></script>
 </head>
 <body>
-    <div class="container">
-        <div class="login-container">
-            <h2>Welcome Back</h2>
-            <p class="subtitle">Login to your account</p>
+    <!-- Navbar removed as requested -->
+    
+    <div class="login-container">
+        <div class="login-box">
+            <div class="login-header">
+                <h2>Welcome Back</h2>
+                <p class="subtitle">Login to your account</p>
+            </div>
             
             <form id="loginForm" class="login-form">
                 <div class="form-group">
                     <label for="username">Username</label>
-                    <input type="text" id="username" name="username" placeholder="Default: 123" required>
+                    <div class="input-field">
+                        <i class="fas fa-user"></i>
+                        <input type="text" id="username" name="username" placeholder="Enter your username" required>
+                    </div>
                 </div>
                 
                 <div class="form-group">
                     <label for="password">Password</label>
-                    <input type="password" id="password" name="password" placeholder="Default: 123" required>
+                    <div class="input-field">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" id="password" name="password" placeholder="Enter your password" required>
+                    </div>
                 </div>
                 
-                <div class="form-group remember-me">
-                    <input type="checkbox" id="remember" name="remember">
-                    <label for="remember">Remember me</label>
-                </div>
-                
-                <button type="submit" class="login-btn">Login</button>
-                
-                <div class="form-footer">
-                    <p>Don't have an account? <a href="register.html">Register</a></p>
+                <div class="form-options">
+                    <div class="remember-me">
+                        <input type="checkbox" id="remember" name="remember">
+                        <label for="remember">Remember me</label>
+                    </div>
                     <a href="#" class="forgot-password">Forgot Password?</a>
                 </div>
+                
+                <button type="submit" class="login-btn">Login <i class="fas fa-arrow-right"></i></button>
             </form>
+            
+            <div class="register-link">
+                <p>Don't have an account? <a href="register.html">Register</a></p>
+            </div>
+            
+            <!-- Social login options removed as requested -->
         </div>
     </div>
+    <!-- Login Script -->
     <script>
         document.getElementById('loginForm').addEventListener('submit', function(e) {
             e.preventDefault();
@@ -44,15 +69,67 @@
             const username = document.getElementById('username').value;
             const password = document.getElementById('password').value;
             
-            // Check for default credentials
-            if (username === '123' && password === '123') {
-                // Successful login
-                localStorage.setItem('isLoggedIn', 'true');
-                window.location.href = 'index.html';
-            } else {
-                alert('Invalid credentials. Please use the default username and password (both are 123)');
-            }
+            // Show loading state
+            const loginBtn = document.querySelector('.login-btn');
+            const originalText = loginBtn.innerHTML;
+            loginBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Logging in...';
+            loginBtn.disabled = true;
+            
+            // Simulate network delay
+            setTimeout(function() {
+                
+                // Check for registered users
+                let users = [];
+                try {
+                    const existingUsers = localStorage.getItem('shopLaneUsers');
+                    if (existingUsers) {
+                        users = JSON.parse(existingUsers);
+                    }
+                } catch (error) {
+                    console.error('Error loading users:', error);
+                }
+                
+                // Find user by username
+                const user = users.find(u => u.username === username && u.password === password);
+                
+                if (user) {
+                    // Successful login
+                    const userData = {
+                        fullName: user.fullName,
+                        email: user.email,
+                        username: user.username
+                    };
+                    
+                    localStorage.setItem('isLoggedIn', 'true');
+                    localStorage.setItem('user', JSON.stringify(userData));
+                    
+                    // Redirect to product page after successful login
+                    window.location.href = 'index.html#no-redirect';
+                    // This hash will be used to prevent the redirect to landing page
+                } else {
+                    // Show error
+                    loginBtn.innerHTML = originalText;
+                    loginBtn.disabled = false;
+                    
+                    // Show error message
+                    const errorMessage = document.createElement('div');
+                    errorMessage.className = 'error-message';
+                    errorMessage.innerHTML = '<i class="fas fa-exclamation-circle"></i> Invalid credentials. Please check your username and password.';
+                    
+                    // Insert error message after the form
+                    const loginForm = document.getElementById('loginForm');
+                    loginForm.parentNode.insertBefore(errorMessage, loginForm.nextSibling);
+                    
+                    // Remove error message after 5 seconds
+                    setTimeout(function() {
+                        errorMessage.style.opacity = '0';
+                        setTimeout(function() {
+                            errorMessage.remove();
+                        }, 300);
+                    }, 5000);
+                }
+            }, 1000);
         });
     </script>
 </body>
-</html> 
+</html>

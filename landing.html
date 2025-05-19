@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>SHOPLANE - Your Fashion Destination</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" href="https://yt3.ggpht.com/a/AGF-l78km1YyNXmF0r3-0CycCA0HLA_i6zYn_8NZEg=s900-c-k-c0xffffffff-no-rj-mo" type="image/gif" sizes="16x16">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/landing.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <script src="https://kit.fontawesome.com/4a3b1f73a2.js"></script>
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="main-header">
+        <div class="container">
+            <div class="logo">
+                <a href="index.html"><h1><b>SHOP</b>LANE</h1></a>
+            </div>
+            <div class="auth-links">
+                <a href="login.html" class="login-btn">Login</a>
+                <a href="register.html" class="register-btn">Register</a>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-content">
+            <h1>New Summer Collection 2025</h1>
+            <p>Discover the latest trends in fashion and get up to 50% off on your first order</p>
+            <div class="hero-buttons">
+                <a href="index.html" class="primary-btn" onclick="return checkLogin(event)">Shop Now</a>
+                <a href="#featured" class="secondary-btn">Learn More</a>
+            </div>
+        </div>
+        <div class="hero-slider">
+            <div class="slider-container">
+                <div class="slide">
+                    <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Fashion Model with Shopping Bags">
+                </div>
+                <div class="slide">
+                    <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Fashion Model in Red Dress">
+                </div>
+                <div class="slide">
+                    <img src="https://images.unsplash.com/photo-1485968579580-b6d095142e6e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1172&q=80" alt="Fashion Model in Black Outfit">
+                </div>
+                <div class="slide">
+                    <img src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Fashion Model with Sunglasses">
+                </div>
+                <div class="slide">
+                    <img src="https://images.unsplash.com/photo-1492707892479-7bc8d5a4ee93?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1173&q=80" alt="Woman Shopping">
+                </div>
+            </div>
+            <div class="slider-controls">
+                <div class="slider-dots"></div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Featured Categories -->
+    <section id="featured" class="featured-categories">
+        <div class="container">
+            <h2 class="section-title">Shop by Category</h2>
+            <div class="categories-grid">
+                <div class="category-card">
+                    <img src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=736&q=80" alt="Women's Fashion">
+                    <div class="category-content">
+                        <h3>Women's Fashion</h3>
+                        <a href="index.html#no-redirect" class="category-btn" onclick="return checkLogin(event)">Shop Now</a>
+                    </div>
+                </div>
+                <div class="category-card">
+                    <img src="https://images.unsplash.com/photo-1617137968427-85924c800a22?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80" alt="Men's Fashion">
+                    <div class="category-content">
+                        <h3>Men's Fashion</h3>
+                        <a href="index.html#no-redirect" class="category-btn" onclick="return checkLogin(event)">Shop Now</a>
+                    </div>
+                </div>
+                <div class="category-card">
+                    <img src="https://images.unsplash.com/photo-1576053139778-7e32f2ae3cfd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" alt="Accessories">
+                    <div class="category-content">
+                        <h3>Accessories</h3>
+                        <a href="accessories.html" class="category-btn" onclick="return checkLogin(event)">Shop Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Limited Offers -->
+    <section class="limited-offers">
+        <div class="container">
+            <div class="offer-content">
+                <h2>Limited Edition Collection</h2>
+                <p>Get up to 50% off on our exclusive limited edition items</p>
+                <a href="index.html" class="primary-btn" onclick="return checkLogin(event)">Shop Now</a>
+            </div>
+            <div class="offer-image">
+                <img src="https://images.unsplash.com/photo-1445205170230-053b83016050?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1171&q=80" alt="Limited Edition">
+            </div>
+        </div>
+    </section>
+    
+    <!-- Testimonials -->
+    <section class="testimonials">
+        <div class="container">
+            <h2 class="section-title">What They're Saying</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-image">
+                        <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Customer">
+                    </div>
+                    <p class="testimonial-text">"I absolutely love the quality of clothes from ShopLane. Their customer service is exceptional!"</p>
+                    <h4 class="testimonial-name">Sarah Johnson</h4>
+                    <div class="testimonial-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-image">
+                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Customer">
+                    </div>
+                    <p class="testimonial-text">"The variety of products is amazing. I always find exactly what I'm looking for at ShopLane."</p>
+                    <h4 class="testimonial-name">Michael Brown</h4>
+                    <div class="testimonial-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-image">
+                        <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Customer">
+                    </div>
+                    <p class="testimonial-text">"Fast shipping and easy returns. Shopping at ShopLane is always a pleasant experience!"</p>
+                    <h4 class="testimonial-name">Emily Davis</h4>
+                    <div class="testimonial-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Newsletter -->
+    <section class="newsletter">
+        <div class="container">
+            <h2>Sign Up to Get Newsletter</h2>
+            <p>Stay updated with our latest collections and exclusive offers</p>
+            <form class="newsletter-form">
+                <input type="email" placeholder="Enter your email address">
+                <button type="submit" class="primary-btn">Subscribe</button>
+            </form>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <h2><b>SHOP</b>LANE</h2>
+                    <p>Your ultimate fashion destination</p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h3>Shop</h3>
+                        <ul>
+                            <li><a href="index.html#no-redirect">Clothing</a></li>
+                            <li><a href="accessories.html">Accessories</a></li>
+                            <li><a href="#">New Arrivals</a></li>
+                            <li><a href="#">Sale</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h3>Help</h3>
+                        <ul>
+                            <li><a href="#">FAQs</a></li>
+                            <li><a href="#">Contact Us</a></li>
+                            <li><a href="#">Shipping</a></li>
+                            <li><a href="#">Returns</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h3>About</h3>
+                        <ul>
+                            <li><a href="about.html">Our Story</a></li>
+                            <li><a href="#">Careers</a></li>
+                            <li><a href="#">Privacy Policy</a></li>
+                            <li><a href="#">Terms & Conditions</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="footer-social">
+                    <h3>Follow Us</h3>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-pinterest-p"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 ShopLane. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Image Slider and Login Check Scripts -->
+    <script>
+        // Function to check if user is logged in
+        function checkLogin(event) {
+            const isLoggedIn = localStorage.getItem('isLoggedIn');
+            
+            if (isLoggedIn !== 'true') {
+                // User is not logged in, redirect to login page
+                event.preventDefault();
+                window.location.href = 'login.html';
+                return false;
+            }
+            
+            // User is logged in, allow the default action (navigation to the href)
+            return true;
+        }
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            // Slider functionality
+            const sliderContainer = document.querySelector('.slider-container');
+            const slides = document.querySelectorAll('.slide');
+            const dotsContainer = document.querySelector('.slider-dots');
+            let currentSlide = 0;
+            let slideInterval;
+            
+            // Create dots for each slide
+            slides.forEach((_, index) => {
+                const dot = document.createElement('div');
+                dot.classList.add('dot');
+                if (index === 0) dot.classList.add('active');
+                dot.addEventListener('click', () => {
+                    goToSlide(index);
+                    resetInterval();
+                });
+                dotsContainer.appendChild(dot);
+            });
+            
+            // Function to go to a specific slide
+            function goToSlide(slideIndex) {
+                if (slideIndex >= slides.length) slideIndex = 0;
+                if (slideIndex < 0) slideIndex = slides.length - 1;
+                
+                sliderContainer.style.transform = `translateX(-${slideIndex * 100}%)`;
+                
+                // Update active dot
+                document.querySelectorAll('.dot').forEach((dot, index) => {
+                    dot.classList.toggle('active', index === slideIndex);
+                });
+                
+                currentSlide = slideIndex;
+            }
+            
+            // Function to go to the next slide
+            function nextSlide() {
+                goToSlide(currentSlide + 1);
+            }
+            
+            // Function to reset the interval
+            function resetInterval() {
+                clearInterval(slideInterval);
+                slideInterval = setInterval(nextSlide, 2000); // 2 seconds delay
+            }
+            
+            // Start the slider
+            resetInterval();
+            
+            // Check if user is logged in
+            const isLoggedIn = localStorage.getItem('isLoggedIn');
+            const userData = localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')) : null;
+            
+            if (isLoggedIn === 'true' && userData) {
+                // Update auth links
+                const authLinks = document.querySelector('.auth-links');
+                authLinks.innerHTML = `
+                    <span class="welcome-text">Welcome, ${userData.username}</span>
+                    <a href="#" class="logout-btn" onclick="logout()">Logout</a>
+                `;
+            }
+        });
+        
+        function logout() {
+            localStorage.removeItem('isLoggedIn');
+            localStorage.removeItem('user');
+            window.location.href = 'landing.html';
+        }
+    </script>
+</body>
+</html>

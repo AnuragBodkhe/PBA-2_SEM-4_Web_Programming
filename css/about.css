@@ -1,0 +1,318 @@
+/* About Page Styles */
+
+/* Hero Section */
+.about-hero {
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
+    background-size: cover;
+    background-position: center;
+    color: #fff;
+    text-align: center;
+    padding: 120px 0;
+    margin-bottom: 0;
+}
+
+.about-hero h1 {
+    font-size: 48px;
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+.about-hero p {
+    font-size: 18px;
+    opacity: 0.9;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Our Story Section */
+.our-story {
+    padding: 80px 0;
+    background-color: #fff;
+}
+
+.story-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: center;
+}
+
+.story-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.story-text p {
+    margin-bottom: 20px;
+    font-size: 16px;
+    line-height: 1.8;
+    color: #555;
+}
+
+/* Our Values Section */
+.our-values {
+    background-color: #f8f9fa;
+    padding: 80px 0;
+}
+
+.values-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+    text-align: center;
+}
+
+.value-card {
+    padding: 30px 20px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease;
+}
+
+.value-card:hover {
+    transform: translateY(-5px);
+}
+
+.value-card i {
+    font-size: 36px;
+    color: #1e88e5;
+    margin-bottom: 20px;
+}
+
+.value-card h3 {
+    font-size: 20px;
+    margin-bottom: 15px;
+    color: #222;
+}
+
+.value-card p {
+    color: #666;
+    font-size: 15px;
+    line-height: 1.6;
+}
+
+/* Our Team Section */
+.our-team {
+    padding: 80px 0;
+    background-color: #fff;
+}
+
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+
+.team-member {
+    text-align: center;
+    padding: 20px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease;
+}
+
+.team-member:hover {
+    transform: translateY(-5px);
+}
+
+.team-member img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: 0 auto 20px;
+    border: 5px solid #f8f9fa;
+}
+
+.team-member h3 {
+    font-size: 20px;
+    margin-bottom: 5px;
+    color: #222;
+}
+
+.team-member .position {
+    color: #1e88e5;
+    font-weight: 500;
+    margin-bottom: 15px;
+}
+
+.team-member p {
+    color: #666;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+/* LinkedIn Profile Section */
+.linkedin-profile {
+    padding: 80px 0;
+    background-color: #fff;
+}
+
+.linkedin-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.linkedin-card {
+    text-align: center;
+    padding: 30px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    transition: transform 0.3s ease;
+}
+
+.linkedin-card:hover {
+    transform: translateY(-5px);
+}
+
+.linkedin-photo {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: 0 auto 20px;
+    border: 5px solid #fff;
+}
+
+.linkedin-button {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 12px 25px;
+    background-color: #0077b5;
+    color: #fff;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+}
+
+.linkedin-button:hover {
+    background-color: #005e93;
+}
+
+.linkedin-button i {
+    margin-right: 8px;
+}
+
+/* Contact Info Section */
+.contact-info {
+    background-color: #f8f9fa;
+    padding: 80px 0;
+}
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+    text-align: center;
+}
+
+.contact-card {
+    padding: 30px 20px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease;
+}
+
+.contact-card:hover {
+    transform: translateY(-5px);
+}
+
+.contact-card i {
+    font-size: 36px;
+    color: #1e88e5;
+    margin-bottom: 20px;
+}
+
+.contact-card h3 {
+    font-size: 20px;
+    margin-bottom: 15px;
+    color: #222;
+}
+
+.contact-card p {
+    color: #666;
+    font-size: 15px;
+    line-height: 1.6;
+}
+
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.social-icons a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: #f0f0f0;
+    border-radius: 50%;
+    color: #333;
+    transition: all 0.3s ease;
+}
+
+.social-icons a:hover {
+    background: #1e88e5;
+    color: #fff;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .values-grid,
+    .contact-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .team-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .about-hero {
+        padding: 80px 0;
+    }
+    
+    .about-hero h1 {
+        font-size: 36px;
+    }
+    
+    .story-content {
+        grid-template-columns: 1fr;
+    }
+    
+    .story-image {
+        order: -1;
+    }
+    
+    .team-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .values-grid,
+    .contact-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .about-hero h1 {
+        font-size: 28px;
+    }
+    
+    .section-title {
+        font-size: 24px;
+    }
+}

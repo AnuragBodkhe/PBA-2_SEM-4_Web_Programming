@@ -4,14 +4,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Cart | E-COMMERCE WEBSITE BY EDYODA</title>
-    <link rel="stylesheet" href="css/cart.css">
+    <title>Your Shopping Cart | ShopLane</title>
+    
+    <!-- Preload critical assets -->
+    <link rel="preload" href="css/cart.css" as="style">
+    <link rel="preload" href="js/utils.js" as="script">
+    <link rel="preload" href="js/cart.js" as="script">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
     <!-- favicon -->
     <link rel="icon" href="https://yt3.ggpht.com/a/AGF-l78km1YyNXmF0r3-0CycCA0HLA_i6zYn_8NZEg=s900-c-k-c0xffffffff-no-rj-mo" type="image/gif" sizes="16x16">
-    <!-- header links -->
-    <script src="https://kit.fontawesome.com/4a3b1f73a2.js"></script>
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="css/cart.css">
+    <link rel="stylesheet" href="css/cart-animations.css">
+    
+    <!-- Fonts -->
+    <script src="https://kit.fontawesome.com/4a3b1f73a2.js" defer></script>
     <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Utility functions -->
+    <script src="js/utils.js"></script>
 </head>
 <body>
     <!-- HEADER -->
@@ -28,13 +43,43 @@
 
     <!-- CART CONTAINER -->
     <div id="cartMainContainer">
-        <h1>Your Shopping Cart</h1>
-        <h3 id="totalItem">Total Items: 0</h3>
+        <div class="cart-header">
+            <h1>Your Shopping Cart</h1>
+            <h3 id="totalItem">Total Items: 0</h3>
+        </div>
 
-        <div id="cartContainer">
-            <!-- Cart items will be loaded here -->
+        <div class="cart-content">
+            <div id="cartContainer" class="cart-items-container">
+                <!-- Loading indicator -->
+                <div id="loadingIndicator" class="loading-indicator">
+                    <div class="spinner"></div>
+                    <p>Loading your cart...</p>
+                </div>
+                <!-- Cart items will be loaded here -->
+            </div>
+
+            <div id="cartSummary" class="cart-summary">
+                <h2>Order Summary</h2>
+                <div class="summary-item">
+                    <span>Subtotal:</span>
+                    <span class="subtotal-value">₹0</span>
+                </div>
+                <div class="summary-item">
+                    <span>Shipping:</span>
+                    <span class="shipping-value">₹99</span>
+                </div>
+                <div class="summary-item total">
+                    <span>Total:</span>
+                    <span class="total-value">₹0</span>
+                </div>
+                <button id="checkout-btn" class="checkout-btn disabled" disabled>Proceed to Checkout</button>
+                <a href="index.html" class="continue-shopping">Continue Shopping</a>
+            </div>
         </div>
     </div>
+
+    <!-- Toast notifications container -->
+    <div id="toastContainer" class="toast-container"></div>
 
     <!-- FOOTER -->
     <div id="footer"></div>
@@ -47,6 +92,6 @@
         }
         loadFooter();
     </script>
-    <script src="cart.js"></script>
+    <script src="cart_fixed.js"></script>
 </body>
 </html>

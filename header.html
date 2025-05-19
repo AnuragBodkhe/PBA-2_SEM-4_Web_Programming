@@ -4,41 +4,99 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title> HEADER | E-COMMERCE WEBSITE </title>
+    <title>ShopLane - Fashion & Accessories</title>
+    <!-- Preload critical assets -->
+    <link rel="preload" href="css/header.css" as="style">
+    <link rel="preload" href="https://kit.fontawesome.com/4a3b1f73a2.js" as="script">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
     <!-- favicon -->
     <link rel="icon" href="https://yt3.ggpht.com/a/AGF-l78km1YyNXmF0r3-0CycCA0HLA_i6zYn_8NZEg=s900-c-k-c0xffffffff-no-rj-mo" type="image/gif" sizes="16x16">
+    
     <!-- EXTERNAL LINKS -->
     <link rel="stylesheet" href="css/header.css">
-    <script src="https://kit.fontawesome.com/4a3b1f73a2.js"></script>
+    <script src="https://kit.fontawesome.com/4a3b1f73a2.js" defer></script>
     <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
+    
+    <!-- Utility functions -->
+    <script src="js/utils.js"></script>
 </head>
 <body>
-    
     <header>
         <section>
             <!-- MAIN CONTAINER -->
             <div id="container">
                 <!-- SHOP NAME -->
                 <div id="shopName"><a href="index.html"> <b>SHOP</b>LANE </a></div>
-                    <!-- COLLCETIONS ON WEBSITE -->
-                    <div id="collection">
-                        <div id="clothing"><a href="clothing.html"> CLOTHING </a></div>
-                        <div id="accessories"><a href="accessories.html"> ACCESSORIES </a></div>
+                <!-- COLLCETIONS ON WEBSITE -->
+                <div id="collection">
+                    <div id="clothing"><a href="clothing.html"> CLOTHING </a></div>
+                    <div id="accessories"><a href="accessories.html"> ACCESSORIES </a></div>
+                    <div id="about"><a href="about.html"> ABOUT </a></div>
+                </div>
+                <!-- SEARCH SECTION -->
+                <div id="search">
+                    <i class="fas fa-search search"></i>
+                    <input type="text" id="input" name="searchBox" placeholder="Search for Clothing and Accessories">
+                </div>
+                <!-- USER SECTION (CART AND USER ICON) -->
+                <div id="user">
+                    <a href="cart.html" aria-label="Shopping Cart"> 
+                        <i class="fas fa-shopping-cart addedToCart">
+                            <div id="badge" aria-label="Item count"> 0 </div>
+                        </i>
+                    </a>
+                    <div class="profile-container">
+                        <a href="profile.html" class="profile-link" aria-label="User Profile"> 
+                            <i class="fas fa-user-circle userIcon"></i> 
+                        </a>
                     </div>
-                    <!-- SEARCH SECTION -->
-                    <div id="search">
-                        <i class="fas fa-search search"></i>
-                        <input type="text" id="input" name="searchBox" placeholder="Search for Clothing and Accessories">
-                    </div>
-                    <!-- USER SECTION (CART AND USER ICON) -->
-                    <div id="user">
-                        <a href="cart.html"> <i class="fas fa-shopping-cart addedToCart"><div id="badge"> 0 </div></i></a>
-                        <a href="#"> <i class="fas fa-user-circle userIcon"></i> </a>
-                    </div>
+                </div>
             </div>
-
         </section>
     </header>
 
+<script>
+    // Check if user is logged in on page load and update cart badge
+    document.addEventListener('DOMContentLoaded', function() {
+        // Update cart badge count
+        updateCartBadge();
+        
+        // Check login status to handle profile link behavior
+        var userData = getUserData();
+        var profileLink = document.querySelector('.profile-link');
+        
+        if (!userData) {
+            // If user is not logged in, redirect to login page instead of profile
+            profileLink.href = 'login.html';
+        }
+        
+        // Add search functionality
+        const searchInput = document.getElementById('input');
+        if (searchInput) {
+            // Use debounce to prevent excessive processing while typing
+            const performSearch = debounce(function() {
+                const query = searchInput.value.trim().toLowerCase();
+                if (query.length >= 2) {
+                    window.location.href = `search.html?q=${encodeURIComponent(query)}`;
+                }
+            }, 500);
+            
+            searchInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    performSearch();
+                }
+            });
+            
+            // Add search icon click handler
+            const searchIcon = document.querySelector('.fa-search');
+            if (searchIcon) {
+                searchIcon.addEventListener('click', performSearch);
+            }
+        }
+    });
+</script>
 </body>
 </html>

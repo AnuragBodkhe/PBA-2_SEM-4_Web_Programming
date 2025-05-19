@@ -9,6 +9,22 @@
     <!-- Favicon -->
     <link rel="icon" href="https://yt3.ggpht.com/a/AGF-l78km1YyNXmF0r3-0CycCA0HLA_i6zYn_8NZEg=s900-c-k-c0xffffffff-no-rj-mo" type="image/gif" sizes="16x16">
     
+    <!-- Conditional redirect to landing page -->
+    <script>
+        // Check if we're coming from login or clothing button (has #no-redirect hash)
+        document.addEventListener('DOMContentLoaded', function() {
+            if (window.location.hash === '#no-redirect') {
+                // Remove the hash to clean up the URL
+                history.replaceState(null, document.title, window.location.pathname);
+            } else if (!sessionStorage.getItem('visited-index')) {
+                // Only redirect if this is the first visit to index.html
+                window.location.href = 'landing.html';
+            }
+            // Mark that we've visited index.html
+            sessionStorage.setItem('visited-index', 'true');
+        });
+    </script>
+    
     <!-- CSS -->
     <link rel="stylesheet" href="css/index.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">

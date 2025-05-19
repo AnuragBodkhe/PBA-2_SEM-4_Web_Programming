@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Search Results | ShopLane</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" href="https://yt3.ggpht.com/a/AGF-l78km1YyNXmF0r3-0CycCA0HLA_i6zYn_8NZEg=s900-c-k-c0xffffffff-no-rj-mo" type="image/gif" sizes="16x16">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/index.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <script src="https://kit.fontawesome.com/4a3b1f73a2.js" defer></script>
+    
+    <!-- Utility functions -->
+    <script src="js/utils.js"></script>
+    
+    <style>
+        .search-container {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+        
+        .search-header {
+            margin-bottom: 30px;
+        }
+        
+        .search-header h1 {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        
+        .search-header p {
+            color: #666;
+        }
+        
+        .search-results {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .product-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+        }
+        
+        .product-image {
+            height: 250px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .product-card:hover .product-image img {
+            transform: scale(1.05);
+        }
+        
+        .product-details {
+            padding: 15px;
+        }
+        
+        .product-brand {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+        
+        .product-name {
+            font-weight: 500;
+            font-size: 16px;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        
+        .product-price {
+            font-weight: 600;
+            color: #1e88e5;
+            font-size: 18px;
+        }
+        
+        .add-to-cart-btn {
+            position: absolute;
+            bottom: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #1e88e5;
+            color: white;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 4px;
+            font-size: 14px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: background 0.3s ease, transform 0.3s ease;
+            opacity: 0;
+            visibility: hidden;
+        }
+        
+        .product-card:hover .add-to-cart-btn {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .add-to-cart-btn:hover {
+            background: #1565c0;
+            transform: translateX(-50%) scale(1.05);
+        }
+        
+        .add-to-cart-btn:active {
+            transform: translateX(-50%) scale(0.95);
+        }
+        
+        .add-to-cart-btn i {
+            font-size: 16px;
+        }
+        
+        .wishlist-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(255, 255, 255, 0.8);
+            color: #888;
+            border: none;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 2;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .wishlist-btn:hover {
+            background: white;
+            transform: scale(1.1);
+        }
+        
+        .wishlist-btn.in-wishlist {
+            color: #e91e63;
+        }
+        
+        .wishlist-btn i {
+            font-size: 18px;
+        }
+        
+        .no-results {
+            text-align: center;
+            padding: 50px 0;
+            color: #666;
+        }
+        
+        .no-results i {
+            font-size: 48px;
+            color: #ddd;
+            margin-bottom: 20px;
+        }
+        
+        .no-results h2 {
+            font-size: 24px;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        
+        .no-results p {
+            margin-bottom: 20px;
+        }
+        
+        .search-again {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        
+        .search-again input {
+            width: 100%;
+            max-width: 500px;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px 0 0 4px;
+            font-size: 16px;
+        }
+        
+        .search-again button {
+            background: #1e88e5;
+            color: white;
+            border: none;
+            padding: 0 20px;
+            border-radius: 0 4px 4px 0;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        
+        .search-again button:hover {
+            background: #1565c0;
+        }
+        
+        .loading {
+            text-align: center;
+            padding: 50px 0;
+        }
+        
+        .spinner {
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            border: 3px solid rgba(0,0,0,0.1);
+            border-radius: 50%;
+            border-top-color: #1e88e5;
+            animation: spin 1s ease-in-out infinite;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        @media (max-width: 768px) {
+            .search-results {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+                gap: 20px;
+            }
+            
+            .product-image {
+                height: 200px;
+            }
+            
+            .add-to-cart-btn {
+                opacity: 1;
+                visibility: visible;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .search-results {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+                gap: 15px;
+            }
+            
+            .product-image {
+                height: 180px;
+            }
+            
+            .product-details {
+                padding: 10px;
+            }
+            
+            .product-brand {
+                font-size: 12px;
+            }
+            
+            .product-name {
+                font-size: 14px;
+            }
+            
+            .product-price {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- HEADER -->
+    <div id="header"></div>
+    <script>
+        function loadHeader() {
+            const req = new XMLHttpRequest();
+            req.open("GET", "header.html", false);
+            req.send(null);
+            document.getElementById("header").innerHTML = req.responseText;
+        }
+        loadHeader();
+    </script>
+    
+    <div class="search-container">
+        <div class="search-header">
+            <h1>Search Results</h1>
+            <p>Showing results for "<span id="searchQuery"></span>"</p>
+        </div>
+        
+        <div id="searchResults" class="search-results">
+            <div class="loading">
+                <div class="spinner"></div>
+                <p>Searching for products...</p>
+            </div>
+        </div>
+        
+        <div class="search-again">
+            <input type="text" id="newSearchInput" placeholder="Try another search">
+            <button id="newSearchBtn"><i class="fas fa-search"></i></button>
+        </div>
+    </div>
+    
+    <!-- FOOTER -->
+    <div id="footer"></div>
+    <script>
+        function loadFooter() {
+            const req = new XMLHttpRequest();
+            req.open("GET", "footer.html", false);
+            req.send(null);
+            document.getElementById("footer").innerHTML = req.responseText;
+        }
+        loadFooter();
+    </script>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get search query from URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const query = urlParams.get('q');
+            
+            // Display search query
+            document.getElementById('searchQuery').textContent = query || '';
+            document.getElementById('newSearchInput').value = query || '';
+            
+            // Handle new search
+            document.getElementById('newSearchBtn').addEventListener('click', function() {
+                const newQuery = document.getElementById('newSearchInput').value.trim();
+                if (newQuery.length >= 2) {
+                    window.location.href = `search.html?q=${encodeURIComponent(newQuery)}`;
+                }
+            });
+            
+            document.getElementById('newSearchInput').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    const newQuery = this.value.trim();
+                    if (newQuery.length >= 2) {
+                        window.location.href = `search.html?q=${encodeURIComponent(newQuery)}`;
+                    }
+                }
+            });
+            
+            // Perform search
+            if (query && query.length >= 2) {
+                // In a real app, you would fetch data from a server
+                // For this demo, we'll simulate a search with mock data
+                setTimeout(function() {
+                    // Simulate API call
+                    const mockProducts = [
+                        {
+                            id: 1,
+                            name: "Men's Blue Denim Shirt",
+                            brand: "Levi's",
+                            price: 1299,
+                            preview: "https://assets.myntassets.com/h_1440,q_90,w_1080/v1/assets/images/7579188/2018/11/5/08a7b230-ee8f-46c0-a945-4e835a3c01c01541402833619-United-Colors-of-Benetton-Men-Sweatshirts-1271541402833444-1.jpg"
+                        },
+                        {
+                            id: 2,
+                            name: "Women's Black Handbag",
+                            brand: "Baggit",
+                            price: 1499,
+                            preview: "https://assets.myntassets.com/h_1440,q_90,w_1080/v1/assets/images/2060340/2017/9/14/11505387708574-Puma-Men-Black-Solid-Sporty-Jacket-371505387708496-1.jpg"
+                        },
+                        {
+                            id: 3,
+                            name: "Casual White Sneakers",
+                            brand: "Nike",
+                            price: 2999,
+                            preview: "https://assets.myntassets.com/h_1440,q_90,w_1080/v1/assets/images/productimage/2019/2/23/dc05b5e5-aa82-493e-bf0b-0c309baf21021550920383101-1.jpg"
+                        },
+                        {
+                            id: 4,
+                            name: "Analog Watch with Leather Strap",
+                            brand: "Fossil",
+                            price: 4599,
+                            preview: "https://assets.myntassets.com/h_1440,q_90,w_1080/v1/assets/images/9803247/2019/5/27/624dac60-4c42-4902-bba1-30a51cc7f43c1558948536543-Apple-Unisex-Smart-Watches-1441558948536225-1.jpg"
+                        },
+                        {
+                            id: 5,
+                            name: "Women's Floral Print Dress",
+                            brand: "ONLY",
+                            price: 1799,
+                            preview: "https://assets.myntassets.com/h_1440,q_90,w_1080/v1/assets/images/10122083/2019/6/24/e533a691-3908-41b0-8307-1928a37d4ec41561362162650-Samsung-Galaxy-Fit-4801561362161527-1.jpg"
+                        },
+                        {
+                            id: 6,
+                            name: "Men's Slim Fit Trousers",
+                            brand: "Allen Solly",
+                            price: 1599,
+                            preview: "https://assets.myntassets.com/h_1440,q_90,w_1080/v1/assets/images/8593217/2019/4/9/de2c21f3-6731-4c29-9369-692a486a1b8c1554802772926-Samsung-Gear-IconX-Black-Cord-free-Fitness-Earbuds-256155480-1.jpg"
+                        }
+                    ];
+                    
+                    // Filter products based on search query
+                    const lowercaseQuery = query.toLowerCase();
+                    const filteredProducts = mockProducts.filter(product => 
+                        product.name.toLowerCase().includes(lowercaseQuery) || 
+                        product.brand.toLowerCase().includes(lowercaseQuery)
+                    );
+                    
+                    const resultsContainer = document.getElementById('searchResults');
+                    
+                    if (filteredProducts.length === 0) {
+                        // No results found
+                        resultsContainer.innerHTML = `
+                            <div class="no-results">
+                                <i class="fas fa-search"></i>
+                                <h2>No results found</h2>
+                                <p>We couldn't find any products matching "${query}"</p>
+                                <p>Try checking your spelling or using more general terms</p>
+                            </div>
+                        `;
+                    } else {
+                        // Display results
+                        resultsContainer.innerHTML = '';
+                        
+                        filteredProducts.forEach(product => {
+                            const productCard = document.createElement('div');
+                            productCard.className = 'product-card';
+                            productCard.innerHTML = `
+                                <div class="product-image">
+                                    <img src="${product.preview}" alt="${product.name}">
+                                    <button class="wishlist-btn" data-id="${product.id}">
+                                        <i class="far fa-heart"></i>
+                                    </button>
+                                </div>
+                                <div class="product-details">
+                                    <div class="product-brand">${product.brand}</div>
+                                    <div class="product-name">${product.name}</div>
+                                    <div class="product-price">₹${product.price}</div>
+                                </div>
+                                <button class="add-to-cart-btn" data-id="${product.id}" data-name="${product.name}" data-price="${product.price}" data-image="${product.preview}">
+                                    <i class="fas fa-shopping-cart"></i>
+                                    Add to Cart
+                                </button>
+                            `;
+                            
+                            resultsContainer.appendChild(productCard);
+                        });
+                        
+                        // Add event listeners to add to cart buttons
+                        document.querySelectorAll('.add-to-cart-btn').forEach(button => {
+                            button.addEventListener('click', function() {
+                                const productId = this.getAttribute('data-id');
+                                const productName = this.getAttribute('data-name');
+                                const productPrice = parseFloat(this.getAttribute('data-price'));
+                                const productImage = this.getAttribute('data-image');
+                                
+                                // Add to cart
+                                addToCart({
+                                    id: productId,
+                                    name: productName,
+                                    price: productPrice,
+                                    preview: productImage
+                                });
+                                
+                                // Show toast notification
+                                showToast(`${productName} added to cart!`, 'success');
+                            });
+                        });
+                        
+                        // Add event listeners to wishlist buttons
+                        document.querySelectorAll('.wishlist-btn').forEach(button => {
+                            button.addEventListener('click', function() {
+                                this.classList.toggle('in-wishlist');
+                                const icon = this.querySelector('i');
+                                
+                                if (this.classList.contains('in-wishlist')) {
+                                    icon.classList.remove('far');
+                                    icon.classList.add('fas');
+                                    showToast('Added to wishlist!', 'success');
+                                } else {
+                                    icon.classList.remove('fas');
+                                    icon.classList.add('far');
+                                    showToast('Removed from wishlist', 'info');
+                                }
+                            });
+                        });
+                    }
+                }, 1000); // Simulate loading delay
+            } else {
+                // No search query provided
+                document.getElementById('searchResults').innerHTML = `
+                    <div class="no-results">
+                        <i class="fas fa-search"></i>
+                        <h2>Enter a search term</h2>
+                        <p>Please enter at least 2 characters to search</p>
+                    </div>
+                `;
+            }
+        });
+        
+        // Function to add to cart
+        function addToCart(product) {
+            // Get existing cart items from localStorage
+            let cart = [];
+            try {
+                const cartData = localStorage.getItem('cart');
+                if (cartData) {
+                    cart = JSON.parse(cartData);
+                }
+            } catch (error) {
+                console.error('Error parsing cart data:', error);
+                cart = [];
+            }
+            
+            // Check if product already exists in cart
+            const existingItemIndex = cart.findIndex(item => item.id === product.id);
+            
+            if (existingItemIndex >= 0) {
+                // If product exists, increase quantity
+                cart[existingItemIndex].quantity += 1;
+            } else {
+                // Add new item with quantity 1
+                cart.push({
+                    id: product.id,
+                    name: product.name,
+                    price: product.price,
+                    image: product.preview,
+                    quantity: 1
+                });
+            }
+            
+            // Save to localStorage
+            localStorage.setItem('cart', JSON.stringify(cart));
+            
+            // Update cart badge
+            updateCartBadge();
+        }
+    </script>
+</body>
+</html>

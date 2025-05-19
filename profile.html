@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>My Profile | SHOPLANE</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" href="https://yt3.ggpht.com/a/AGF-l78km1YyNXmF0r3-0CycCA0HLA_i6zYn_8NZEg=s900-c-k-c0xffffffff-no-rj-mo" type="image/gif" sizes="16x16">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/profile.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <script src="https://kit.fontawesome.com/4a3b1f73a2.js"></script>
+    
+    <!-- jQuery -->
+    <script src="js/jQuery3.4.1.js"></script>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    
+</head>
+
+<body>
+    <!-- Header -->
+    <header id="header"></header>
+    
+    <!-- Profile Section -->
+    <section class="profile-section">
+        <div class="container">
+            <div class="profile-container">
+                <div class="profile-menu">
+                    <ul>
+                        <li data-tab="personal-info"><i class="fas fa-user"></i> Personal Information</li>
+                        <li data-tab="my-orders"><i class="fas fa-shopping-bag"></i> My Orders</li>
+                        <li data-tab="wishlist" class="active"><i class="fas fa-heart"></i> Wishlist</li>
+                        <li data-tab="addresses"><i class="fas fa-map-marker-alt"></i> Addresses</li>
+                        <li data-tab="settings"><i class="fas fa-cog"></i> Settings</li>
+                    </ul>
+                </div>
+                
+                <div class="profile-content">
+                    <!-- Personal Information Tab -->
+                    <div class="tab-content" id="personal-info">
+                        <h2>Personal Information</h2>
+                        <form id="personal-info-form">
+                            <div class="form-group">
+                                <label for="full-name">Full Name</label>
+                                <input type="text" id="full-name" value="John Doe">
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" id="email" value="johndoe@example.com">
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Phone</label>
+                                <input type="tel" id="phone" value="+91 9876543210">
+                            </div>
+                            <div class="form-group">
+                                <label for="dob">Date of Birth</label>
+                                <input type="date" id="dob" value="1990-01-01">
+                            </div>
+                            <div class="form-group">
+                                <label>Gender</label>
+                                <div class="radio-group">
+                                    <label>
+                                        <input type="radio" name="gender" value="male" checked> Male
+                                    </label>
+                                    <label>
+                                        <input type="radio" name="gender" value="female"> Female
+                                    </label>
+                                    <label>
+                                        <input type="radio" name="gender" value="other"> Other
+                                    </label>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn-primary">Save Changes</button>
+                        </form>
+                    </div>
+                    
+                    <!-- My Orders Tab -->
+                    <div class="tab-content" id="my-orders">
+                        <h2>My Orders</h2>
+                        <div class="orders-list">
+                            <!-- Order history will be loaded dynamically here -->
+                            <p class="empty-message">Loading your orders...</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Wishlist Tab -->
+                    <div class="tab-content active" id="wishlist">
+                        <h2>My Wishlist</h2>
+                        <div class="wishlist-items">
+                            <div class="wishlist-item">
+                                <img src="https://via.placeholder.com/100" alt="Product">
+                                <div class="wishlist-item-details">
+                                    <h4>Smart Watch</h4>
+                                    <p>₹2499</p>
+                                    <div class="wishlist-actions">
+                                        <button class="btn-primary add-to-cart" data-id="1" data-name="Smart Watch" data-price="2499">Add to Cart</button>
+                                        <button class="btn-remove remove-from-wishlist" data-id="1"><i class="fas fa-trash"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="wishlist-item">
+                                <img src="https://via.placeholder.com/100" alt="Product">
+                                <div class="wishlist-item-details">
+                                    <h4>Running Shoes</h4>
+                                    <p>₹1899</p>
+                                    <div class="wishlist-actions">
+                                        <button class="btn-primary add-to-cart" data-id="2" data-name="Running Shoes" data-price="1899">Add to Cart</button>
+                                        <button class="btn-remove remove-from-wishlist" data-id="2"><i class="fas fa-trash"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Addresses Tab -->
+                    <div class="tab-content" id="addresses">
+                        <h2>My Addresses</h2>
+                        <div class="addresses-list" id="addresses-container">
+                            <!-- Address items will be loaded here dynamically -->
+                            <p class="empty-message">You don't have any saved addresses yet.</p>
+                        </div>
+                        
+                        <div class="address-form-container" id="address-form-container">
+                            <h3>Add New Address</h3>
+                            <form id="address-form">
+                                <div class="form-group">
+                                    <label for="address-name">Address Name</label>
+                                    <input type="text" id="address-name" placeholder="Home, Office, etc." required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="full-name-address">Full Name</label>
+                                    <input type="text" id="full-name-address" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="street-address">Street Address</label>
+                                    <input type="text" id="street-address" placeholder="Street, Apartment, etc." required>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="city">City</label>
+                                        <input type="text" id="city" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="state">State</label>
+                                        <input type="text" id="state" required>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="pincode">Pincode</label>
+                                        <input type="text" id="pincode" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="phone-address">Phone</label>
+                                        <input type="tel" id="phone-address" required>
+                                    </div>
+                                </div>
+                                <div class="form-group checkbox-group">
+                                    <label>
+                                        <input type="checkbox" id="make-default"> Make this my default address
+                                    </label>
+                                </div>
+                                <div class="form-actions">
+                                    <button type="submit" class="btn-primary">Save Address</button>
+                                    <button type="button" class="btn-secondary" id="cancel-address">Cancel</button>
+                                </div>
+                            </form>
+                        </div>
+                        
+                        <button class="btn-primary add-address-btn" id="show-address-form">
+                            <i class="fas fa-plus"></i> Add New Address
+                        </button>
+                    </div>
+                    
+                    <!-- Settings Tab -->
+                    <div class="tab-content" id="settings">
+                        <h2>Account Settings</h2>
+                        
+                        <div class="settings-section">
+                            <h3>Password</h3>
+                            <form id="password-form">
+                                <div class="form-group">
+                                    <label for="current-password">Current Password</label>
+                                    <input type="password" id="current-password">
+                                </div>
+                                <div class="form-group">
+                                    <label for="new-password">New Password</label>
+                                    <input type="password" id="new-password">
+                                </div>
+                                <div class="form-group">
+                                    <label for="confirm-password">Confirm New Password</label>
+                                    <input type="password" id="confirm-password">
+                                </div>
+                                <button type="submit" class="btn-primary">Change Password</button>
+                            </form>
+                        </div>
+                        
+                        <div class="settings-section">
+                            <h3>Notification Preferences</h3>
+                            <div class="notification-settings">
+                                <div class="notification-option">
+                                    <label>
+                                        <input type="checkbox" id="email-orders" checked> Email notifications for orders
+                                    </label>
+                                </div>
+                                <div class="notification-option">
+                                    <label>
+                                        <input type="checkbox" id="email-promos" checked> Email notifications for promotions
+                                    </label>
+                                </div>
+                                <div class="notification-option">
+                                    <label>
+                                        <input type="checkbox" id="sms-notifications" checked> SMS notifications
+                                    </label>
+                                </div>
+                            </div>
+                            <button class="btn-primary" id="save-preferences">Save Preferences</button>
+                        </div>
+                        
+                        <div class="settings-section danger-zone">
+                            <h3>Danger Zone</h3>
+                            <button class="btn-danger" id="delete-account">Delete Account</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer id="footer"></footer>
+
+    <!-- FOOTER -->
+    <div id="footer"></div>
+    <script>
+        function loadFooter() {
+            const req = new XMLHttpRequest();
+            req.open("GET", "footer.html", false);
+            req.send(null);
+            document.getElementById("footer").innerHTML = req.responseText;
+        }
+        loadFooter();
+    </script>
+    
+    <!-- Load Sections -->
+    <script>
+        function loadSection(elementId, url) {
+            const req = new XMLHttpRequest();
+            req.open("GET", url, false);
+            req.send(null);
+            document.getElementById(elementId).innerHTML = req.responseText;
+        }
+
+        // Load header and footer
+        loadSection('header', 'header.html');
+        loadSection('footer', 'footer.html');
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Tab switching functionality
+            const tabLinks = document.querySelectorAll('.profile-menu li');
+            const tabContents = document.querySelectorAll('.tab-content');
+            
+            tabLinks.forEach(function(tabLink) {
+                tabLink.addEventListener('click', function() {
+                    // Remove active class from all tabs
+                    tabLinks.forEach(function(link) {
+                        link.classList.remove('active');
+                    });
+                    
+                    // Hide all tab contents
+                    tabContents.forEach(function(content) {
+                        content.classList.remove('active');
+                    });
+                    
+                    // Add active class to clicked tab
+                    this.classList.add('active');
+                    
+                    // Show corresponding content
+                    const tabId = this.getAttribute('data-tab');
+                    document.getElementById(tabId).classList.add('active');
+                });
+            });
+            
+            // Load wishlist items from localStorage
+            function loadWishlist() {
+                const wishlistContainer = document.querySelector('#wishlist .wishlist-items');
+                const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+                
+                if (wishlist.length === 0) {
+                    wishlistContainer.innerHTML = '<p class="empty-message">Your wishlist is empty.</p>';
+                    return;
+                }
+                
+                wishlistContainer.innerHTML = '';
+                
+                wishlist.forEach(item => {
+                    const wishlistItem = document.createElement('div');
+                    wishlistItem.className = 'wishlist-item';
+                    wishlistItem.innerHTML = `
+                        <img src="${item.image || 'https://via.placeholder.com/100'}" alt="${item.name}">
+                        <div class="wishlist-item-details">
+                            <h4>${item.name}</h4>
+                            <p>₹${item.price}</p>
+                            <div class="wishlist-actions">
+                                <button class="btn-primary add-to-cart" data-id="${item.id}" data-name="${item.name}" data-price="${item.price}">Add to Cart</button>
+                                <button class="btn-remove remove-from-wishlist" data-id="${item.id}"><i class="fas fa-trash"></i></button>
+                            </div>
+                        </div>
+                    `;
+                    wishlistContainer.appendChild(wishlistItem);
+                });
+                
+                // Add event listeners to the newly created buttons
+                addWishlistButtonListeners();
+            }
+            
+            // Add event listeners to wishlist buttons
+            function addWishlistButtonListeners() {
+                // Add to cart buttons
+                document.querySelectorAll('.add-to-cart').forEach(button => {
+                    button.addEventListener('click', function() {
+                        const id = this.getAttribute('data-id');
+                        const name = this.getAttribute('data-name');
+                        const price = this.getAttribute('data-price');
+                        
+                        // Add to cart
+                        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+                        
+                        // Check if item already exists in cart
+                        const existingItem = cart.find(item => item.id === id);
+                        
+                        if (existingItem) {
+                            existingItem.quantity += 1;
+                        } else {
+                            cart.push({
+                                id: id,
+                                name: name,
+                                price: price,
+                                quantity: 1
+                            });
+                        }
+                        
+                        localStorage.setItem('cart', JSON.stringify(cart));
+                        
+                        // Update cart count
+                        updateCartCount();
+                        
+                        alert(`${name} added to cart!`);
+                    });
+                });
+                
+                // Remove from wishlist buttons
+                document.querySelectorAll('.remove-from-wishlist').forEach(button => {
+                    button.addEventListener('click', function() {
+                        const id = this.getAttribute('data-id');
+                        
+                        // Remove from wishlist
+                        let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+                        wishlist = wishlist.filter(item => item.id !== id);
+                        localStorage.setItem('wishlist', JSON.stringify(wishlist));
+                        
+                        // Reload wishlist
+                        loadWishlist();
+                    });
+                });
+            }
+            
+            // Update cart count
+            function updateCartCount() {
+                const cart = JSON.parse(localStorage.getItem('cart')) || [];
+                let count = 0;
+                
+                cart.forEach(item => {
+                    count += item.quantity;
+                });
+                
+                // Update badge in header
+                const badge = document.querySelector('#badge');
+                if (badge) {
+                    badge.textContent = count;
+                }
+                
+                // Store cart count in localStorage
+                localStorage.setItem('cartCount', count);
+            }
+            
+            // Load orders from localStorage
+            function loadOrders() {
+                const ordersContainer = document.querySelector('#my-orders .orders-list');
+                const orders = JSON.parse(localStorage.getItem('orders')) || [];
+                
+                if (orders.length === 0) {
+                    ordersContainer.innerHTML = '<p class="empty-message">You have no orders yet.</p>';
+                    return;
+                }
+                
+                // Keep the existing orders for now (we'll implement dynamic order loading in the future)
+            }
+            
+            // Address functionality
+            const addressForm = document.getElementById('address-form');
+            const addressFormContainer = document.getElementById('address-form-container');
+            const showAddressFormBtn = document.getElementById('show-address-form');
+            const cancelAddressBtn = document.getElementById('cancel-address');
+            const addressesContainer = document.getElementById('addresses-container');
+            
+            // Show address form
+            showAddressFormBtn.addEventListener('click', function() {
+                addressFormContainer.style.display = 'block';
+                showAddressFormBtn.style.display = 'none';
+                
+                // Pre-fill user data if available
+                if (localStorage.getItem('user')) {
+                    const userData = JSON.parse(localStorage.getItem('user'));
+                    document.getElementById('full-name-address').value = userData.name || '';
+                    document.getElementById('phone-address').value = userData.phone || '';
+                }
+            });
+            
+            // Cancel address form
+            cancelAddressBtn.addEventListener('click', function() {
+                addressFormContainer.style.display = 'none';
+                showAddressFormBtn.style.display = 'block';
+                addressForm.reset();
+            });
+        });
+    </script>
+    
+    <!-- Profile JS -->
+    <script src="js/profile.js"></script>
+</body>
+</html>

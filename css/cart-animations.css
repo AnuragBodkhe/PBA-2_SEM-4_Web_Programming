@@ -1,0 +1,158 @@
+/* Cart Animations CSS */
+
+/* Item quantity pulse animation */
+.quantity.pulse {
+    animation: pulse 0.5s ease;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.2); color: #1e88e5; }
+    100% { transform: scale(1); }
+}
+
+/* Price flash animation */
+.item-total.flash, .subtotal-value.updating, .shipping-value.updating, .total-value.updating {
+    animation: flash 0.6s ease;
+}
+
+@keyframes flash {
+    0% { color: inherit; }
+    30% { color: #1e88e5; }
+    100% { color: inherit; }
+}
+
+/* Item removal animation */
+.cart-item.removing {
+    animation: fadeOut 0.3s ease forwards;
+    overflow: hidden;
+}
+
+@keyframes fadeOut {
+    0% { opacity: 1; transform: translateX(0); }
+    100% { opacity: 0; transform: translateX(-20px); height: 0; margin: 0; padding: 0; }
+}
+
+/* Total items highlight animation */
+#totalItem.highlight {
+    animation: highlight 1s ease;
+}
+
+@keyframes highlight {
+    0% { background-color: transparent; }
+    30% { background-color: rgba(30, 136, 229, 0.2); }
+    100% { background-color: transparent; }
+}
+
+/* Checkout button disabled state */
+#checkout-btn.disabled {
+    background-color: #cccccc !important;
+    cursor: not-allowed !important;
+    opacity: 0.7;
+}
+
+/* Add to cart button animation */
+.add-to-cart-btn {
+    position: relative;
+    overflow: hidden;
+}
+
+.add-to-cart-btn::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 5px;
+    height: 5px;
+    background: rgba(255, 255, 255, 0.5);
+    opacity: 0;
+    border-radius: 100%;
+    transform: scale(1, 1) translate(-50%);
+    transform-origin: 50% 50%;
+}
+
+.add-to-cart-btn:active::after {
+    animation: ripple 0.6s ease-out;
+}
+
+@keyframes ripple {
+    0% {
+        transform: scale(0, 0);
+        opacity: 0.5;
+    }
+    20% {
+        transform: scale(25, 25);
+        opacity: 0.5;
+    }
+    100% {
+        opacity: 0;
+        transform: scale(40, 40);
+    }
+}
+
+/* Cart item hover effect */
+.cart-item {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.cart-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Quantity controls animations */
+.qty-btn {
+    transition: all 0.2s ease;
+}
+
+.qty-btn:hover {
+    transform: scale(1.1);
+}
+
+.qty-btn:active {
+    transform: scale(0.9);
+}
+
+/* Empty cart animation */
+.empty-cart {
+    animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Continue shopping button animation */
+.continue-shopping {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.continue-shopping:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.continue-shopping:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Cart summary sticky animation */
+.cart-summary {
+    transition: top 0.3s ease;
+}
+
+/* Responsive animations */
+@media (max-width: 768px) {
+    .cart-item:hover {
+        transform: none;
+    }
+    
+    .continue-shopping:hover {
+        transform: none;
+        box-shadow: none;
+    }
+}

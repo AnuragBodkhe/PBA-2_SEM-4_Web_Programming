@@ -1,43 +1,60 @@
 <?php
+// Start session
 session_start();
 
-$error = '';
-$success = '';
+// Initialize variables
+$error = "";
+$username = "";
 
-// Check if user is already logged in
-if (isset($_SESSION['user_id'])) {
-    header("Location: index.html");
-    exit();
-}
-
-// Handle login form submission
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $email = $_POST['email'] ?? '';
-    $password = $_POST['password'] ?? '';
-
+// Check if form is submitted
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Get form data
+    $username = trim($_POST["username"]);
+    $password = trim($_POST["password"]);
+    $remember = isset($_POST["remember"]) ? true : false;
+    
     // Validate input
-    if (empty($email) || empty($password)) {
-        $error = "Please fill in all fields";
+    if (empty($username) || empty($password)) {
+        $error = "Please enter both username and password";
     } else {
-        // Check if users array exists in session
-        if (isset($_SESSION['users']) && isset($_SESSION['users'][$email])) {
-            $user = $_SESSION['users'][$email];
+        // In a real application, you would check against a database
+        // For now, we'll use the same localStorage approach but through PHP
+        $users_json = file_get_contents('data/users.json');
+        
+        // Check if the file exists and has content
+        if ($users_json) {
+            $users = json_decode($users_json, true);
             
-            // Verify password
-            if ($password === $user['password']) {
-                // Set session variables
-                $_SESSION['user_id'] = $user['id'];
-                $_SESSION['user_name'] = $user['name'];
-                $_SESSION['user_email'] = $user['email'];
-
-                // Redirect to home page
-                header("Location: index.html");
-                exit();
-            } else {
-                $error = "Invalid password";
+            // Find user by username and password
+            $user_found = false;
+            foreach ($users as $user) {
+                if ($user['username'] === $username && $user['password'] === $password) {
+                    $user_found = true;
+                    
+                    // Create session variables
+                    $_SESSION['isLoggedIn'] = true;
+                    $_SESSION['user'] = [
+                        'fullName' => $user['fullName'],
+                        'email' => $user['email'],
+                        'username' => $user['username']
+                    ];
+                    
+                    // Set cookies if remember me is checked
+                    if ($remember) {
+                        setcookie('username', $username, time() + (86400 * 30), "/"); // 30 days
+                    }
+                    
+                    // Redirect to index page
+                    header("Location: index.html#no-redirect");
+                    exit();
+                }
+            }
+            
+            if (!$user_found) {
+                $error = "Invalid username or password";
             }
         } else {
-            $error = "Email not found";
+            $error = "User database not found";
         }
     }
 }
@@ -48,110 +65,83 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - Fashion Store</title>
-    <link rel="stylesheet" href="css/style.css">
-    <style>
-        .auth-container {
-            max-width: 400px;
-            margin: 50px auto;
-            padding: 20px;
-            background: #fff;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-        .form-group {
-            margin-bottom: 20px;
-        }
-        .form-group label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: bold;
-        }
-        .form-group input {
-            width: 100%;
-            padding: 8px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            font-size: 16px;
-        }
-        .btn-primary {
-            width: 100%;
-            padding: 10px;
-            background: #007bff;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            font-size: 16px;
-            cursor: pointer;
-        }
-        .btn-primary:hover {
-            background: #0056b3;
-        }
-        .error-message {
-            color: #dc3545;
-            padding: 10px;
-            margin-bottom: 20px;
-            background: #ffe6e6;
-            border-radius: 4px;
-        }
-        .success-message {
-            color: #28a745;
-            padding: 10px;
-            margin-bottom: 20px;
-            background: #e6ffe6;
-            border-radius: 4px;
-        }
-        .auth-links {
-            text-align: center;
-            margin-top: 20px;
-        }
-        .auth-links a {
-            color: #007bff;
-            text-decoration: none;
-        }
-        .auth-links a:hover {
-            text-decoration: underline;
-        }
-    </style>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Login | SHOPLANE</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" href="https://yt3.ggpht.com/a/AGF-l78km1YyNXmF0r3-0CycCA0HLA_i6zYn_8NZEg=s900-c-k-c0xffffffff-no-rj-mo" type="image/gif" sizes="16x16">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/login.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <script src="https://kit.fontawesome.com/4a3b1f73a2.js"></script>
 </head>
 <body>
-    <?php include 'header.php'; ?>
-
-    <div class="auth-container">
-        <h1>Login</h1>
-        
-        <?php if ($error): ?>
-            <div class="error-message"><?php echo $error; ?></div>
-        <?php endif; ?>
-
-        <form action="login.php" method="POST">
-            <div class="form-group">
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email" required>
+    <!-- Navbar removed as requested -->
+    
+    <div class="login-container">
+        <div class="login-box">
+            <div class="login-header">
+                <h2>Welcome Back</h2>
+                <p class="subtitle">Login to your account</p>
             </div>
             
-            <div class="form-group">
-                <label for="password">Password:</label>
-                <input type="password" id="password" name="password" required>
+            <?php if (!empty($error)): ?>
+            <div class="error-message">
+                <i class="fas fa-exclamation-circle"></i> <?php echo $error; ?>
             </div>
+            <?php endif; ?>
             
-            <button type="submit" class="btn-primary">Login</button>
-        </form>
-        
-        <p class="auth-links">
-            Don't have an account? <a href="register.php">Register here</a>
-        </p>
-
-        <!-- Default login credentials for testing -->
-        <div style="margin-top: 20px; padding: 10px; background: #f8f9fa; border-radius: 4px;">
-            <p style="margin: 0; font-size: 14px; color: #666;">
-                <strong>Test Account:</strong><br>
-                Email: test@example.com<br>
-                Password: password123
-            </p>
+            <form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" class="login-form">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <div class="input-field">
+                        <i class="fas fa-user"></i>
+                        <input type="text" id="username" name="username" placeholder="Enter your username" value="<?php echo htmlspecialchars($username); ?>" required>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <div class="input-field">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" id="password" name="password" placeholder="Enter your password" required>
+                    </div>
+                </div>
+                
+                <div class="form-options">
+                    <div class="remember-me">
+                        <input type="checkbox" id="remember" name="remember">
+                        <label for="remember">Remember me</label>
+                    </div>
+                    <a href="#" class="forgot-password">Forgot Password?</a>
+                </div>
+                
+                <button type="submit" class="login-btn">Login <i class="fas fa-arrow-right"></i></button>
+            </form>
+            
+            <div class="register-link">
+                <p>Don't have an account? <a href="register.php">Register</a></p>
+            </div>
         </div>
     </div>
 
-    <?php include 'footer.php'; ?>
+    <!-- JavaScript for client-side validation -->
+    <script>
+        // Auto-hide error message after 5 seconds
+        document.addEventListener('DOMContentLoaded', function() {
+            const errorMessage = document.querySelector('.error-message');
+            if (errorMessage) {
+                setTimeout(function() {
+                    errorMessage.style.opacity = '0';
+                    setTimeout(function() {
+                        errorMessage.remove();
+                    }, 300);
+                }, 5000);
+            }
+        });
+    </script>
 </body>
-</html> 
+</html>

@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Order Confirmation | ShopLane</title>
+    <!-- favicon -->
+    <link rel="icon" href="https://yt3.ggpht.com/a/AGF-l78km1YyNXmF0r3-0CycCA0HLA_i6zYn_8NZEg=s900-c-k-c0xffffffff-no-rj-mo" type="image/gif" sizes="16x16">
+    <!-- header links -->
+    <script src="https://kit.fontawesome.com/4a3b1f73a2.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        
+        .order-success {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 30px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        
+        .order-animation {
+            margin: 30px 0;
+            height: 120px;
+            position: relative;
+        }
+        
+        .success-circle {
+            width: 100px;
+            height: 100px;
+            background: #4CAF50;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            margin: 0 auto;
+            transform: scale(0);
+            animation: scaleIn 0.5s ease-out forwards;
+        }
+        
+        .success-checkmark {
+            color: white;
+            font-size: 50px;
+            transform: scale(0);
+            animation: scaleIn 0.5s 0.3s ease-out forwards;
+        }
+        
+        @keyframes scaleIn {
+            0% { transform: scale(0); }
+            70% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: #f44336;
+            top: 0;
+            left: 50%;
+            animation: confetti 1s ease-out forwards;
+            opacity: 0;
+        }
+        
+        @keyframes confetti {
+            0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(100px) rotate(720deg); opacity: 0; }
+        }
+        
+        .order-success h1 {
+            color: #4CAF50;
+            margin-bottom: 20px;
+            font-size: 28px;
+            animation: fadeIn 1s 0.5s both;
+        }
+        
+        .order-success p {
+            color: #666;
+            margin-bottom: 25px;
+            line-height: 1.6;
+            animation: fadeIn 1s 0.7s both;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .order-details {
+            margin: 30px 0;
+            background: #f9f9f9;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: left;
+            animation: fadeIn 1s 0.9s both;
+        }
+        
+        .order-details h2 {
+            font-size: 20px;
+            margin-bottom: 15px;
+            color: #333;
+        }
+        
+        .order-item {
+            display: flex;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .order-item:last-child {
+            border-bottom: none;
+        }
+        
+        .item-image {
+            width: 60px;
+            height: 60px;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-right: 15px;
+        }
+        
+        .item-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .item-details {
+            flex-grow: 1;
+        }
+        
+        .item-name {
+            font-weight: 500;
+            margin-bottom: 5px;
+        }
+        
+        .item-quantity, .item-price {
+            color: #666;
+            font-size: 14px;
+        }
+        
+        .item-price {
+            font-weight: 500;
+            color: #333;
+        }
+        
+        .order-summary {
+            margin-top: 20px;
+            border-top: 1px solid #eee;
+            padding-top: 20px;
+        }
+        
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        
+        .summary-row.total {
+            font-weight: 600;
+            font-size: 18px;
+            margin-top: 15px;
+            color: #333;
+        }
+        
+        .back-btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: #1e88e5;
+            color: white;
+            border-radius: 4px;
+            text-decoration: none;
+            margin-top: 20px;
+            font-weight: 500;
+            transition: background 0.3s;
+            animation: fadeIn 1s 1.1s both;
+        }
+        
+        .back-btn:hover {
+            background: #1565c0;
+        }
+        
+        .order-number {
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .shipping-details {
+            margin-top: 20px;
+            text-align: left;
+            animation: fadeIn 1s 1s both;
+        }
+        
+        .shipping-details h3 {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        
+        .shipping-address {
+            background: #f9f9f9;
+            padding: 15px;
+            border-radius: 4px;
+            margin-bottom: 20px;
+        }
+        
+        .email-sent {
+            color: #4CAF50;
+            font-weight: 500;
+            margin: 20px 0;
+            animation: fadeIn 1s 1.2s both;
+        }
+        
+        @media (max-width: 768px) {
+            .order-success {
+                margin: 20px;
+                padding: 20px;
+            }
+            
+            .order-item {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .item-image {
+                margin-bottom: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- HEADER -->
+    <div id="header"></div>
+    <script>
+        function loadHeader() {
+            const req = new XMLHttpRequest();
+            req.open("GET", "header.html", false);
+            req.send(null);
+            document.getElementById("header").innerHTML = req.responseText;
+        }
+        loadHeader();
+    </script>
+
+    <div class="order-success">
+        <div class="order-animation">
+            <div class="success-circle">
+                <i class="fas fa-check success-checkmark"></i>
+            </div>
+        </div>
+        <h1>Your Order Has Been Placed!</h1>
+        <p>Thank you for your purchase. Your order has been successfully placed and we're processing it now. You'll receive an email confirmation shortly.</p>
+        
+        <div class="email-sent">
+            <i class="fas fa-envelope"></i> Order confirmation email has been sent to your registered email address.
+        </div>
+        
+        <div class="order-details">
+            <h2>Order Summary</h2>
+            <div id="orderItems">
+                <!-- Order items will be dynamically added here -->
+            </div>
+            
+            <div class="order-summary">
+                <div class="summary-row">
+                    <span>Subtotal:</span>
+                    <span id="subtotal">₹0</span>
+                </div>
+                <div class="summary-row">
+                    <span>Shipping:</span>
+                    <span id="shipping">₹0</span>
+                </div>
+                <div class="summary-row total">
+                    <span>Total:</span>
+                    <span id="total">₹0</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="shipping-details">
+            <h3>Order Information</h3>
+            <p>Order Number: <span id="orderNumber" class="order-number">--</span></p>
+            <p>Order Date: <span id="orderDate">--</span></p>
+            <p>Payment Method: Credit Card (ending in ****1234)</p>
+            
+            <h3>Shipping Address</h3>
+            <div class="shipping-address" id="shippingAddress">
+                <!-- Shipping address will be added here -->
+            </div>
+            
+            <p>Estimated Delivery: 3-5 business days</p>
+        </div>
+        
+        <a href="index.html" class="back-btn">Continue Shopping</a>
+    </div>
+
+    <!-- FOOTER -->
+    <div id="footer"></div>
+    <script>
+        function loadFooter() {
+            const req = new XMLHttpRequest();
+            req.open("GET", "footer.html", false);
+            req.send(null);
+            document.getElementById("footer").innerHTML = req.responseText;
+        }
+        loadFooter();
+    </script>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Create confetti animation
+            const confettiColors = ['#f44336', '#2196F3', '#FFEB3B', '#4CAF50', '#9C27B0', '#FF9800'];
+            const confettiContainer = document.querySelector('.order-animation');
+            
+            for (let i = 0; i < 50; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.backgroundColor = confettiColors[Math.floor(Math.random() * confettiColors.length)];
+                confetti.style.left = `${Math.random() * 100}%`;
+                confetti.style.width = `${Math.random() * 10 + 5}px`;
+                confetti.style.height = `${Math.random() * 10 + 5}px`;
+                confetti.style.animationDuration = `${Math.random() * 2 + 1}s`;
+                confetti.style.animationDelay = `${Math.random() * 0.5}s`;
+                confettiContainer.appendChild(confetti);
+            }
+            
+            // Get order details from localStorage
+            const orderDetails = JSON.parse(localStorage.getItem('lastOrder')) || {};
+            const orderItems = orderDetails.items || [];
+            
+            // Display order items
+            const orderItemsContainer = document.getElementById('orderItems');
+            let subtotal = 0;
+            
+            if (orderItems.length > 0) {
+                orderItems.forEach(item => {
+                    const itemTotal = item.price * (item.quantity || 1);
+                    subtotal += itemTotal;
+                    
+                    const orderItemElement = document.createElement('div');
+                    orderItemElement.className = 'order-item';
+                    orderItemElement.innerHTML = `
+                        <div class="item-image">
+                            <img src="${item.image}" alt="${item.name}">
+                        </div>
+                        <div class="item-details">
+                            <div class="item-name">${item.name}</div>
+                            <div class="item-quantity">Quantity: ${item.quantity}</div>
+                        </div>
+                        <div class="item-price">₹${itemTotal}</div>
+                    `;
+                    
+                    orderItemsContainer.appendChild(orderItemElement);
+                });
+            } else {
+                orderItemsContainer.innerHTML = '<p>No items in this order.</p>';
+            }
+            
+            // Update order summary
+            document.getElementById('subtotal').textContent = `₹${subtotal}`;
+            const shipping = subtotal > 999 ? 'FREE' : '₹99';
+            document.getElementById('shipping').textContent = shipping;
+            const total = subtotal > 999 ? subtotal : subtotal + 99;
+            document.getElementById('total').textContent = `₹${total}`;
+            
+            // Generate random order number
+            const orderNumber = 'SL-' + Math.floor(100000 + Math.random() * 900000);
+            document.getElementById('orderNumber').textContent = orderNumber;
+            
+            // Set order date
+            const orderDate = new Date().toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            });
+            document.getElementById('orderDate').textContent = orderDate;
+            
+            // Get user info for shipping address
+            const user = JSON.parse(localStorage.getItem('user')) || {};
+            const shippingAddressElement = document.getElementById('shippingAddress');
+            
+            if (user.name) {
+                shippingAddressElement.innerHTML = `
+                    ${user.name}<br>
+                    ${user.address || '123 Main Street'}<br>
+                    ${user.city || 'Mumbai'}, ${user.state || 'Maharashtra'} ${user.zip || '400001'}<br>
+                    India<br>
+                    Phone: ${user.phone || '+91 9876543210'}
+                `;
+            } else {
+                shippingAddressElement.innerHTML = 'No shipping address available.';
+            }
+            
+            // Save order to user's order history
+            saveOrderToHistory(orderNumber, orderDate, orderItems, total, shipping);
+        });
+        
+        // Function to save order to user's order history
+        function saveOrderToHistory(orderNumber, orderDate, items, total, shipping) {
+            try {
+                // Get existing order history
+                let orderHistory = JSON.parse(localStorage.getItem('orderHistory')) || [];
+                
+                // Add new order
+                const newOrder = {
+                    orderNumber: orderNumber,
+                    orderDate: orderDate,
+                    items: items,
+                    total: total,
+                    shipping: shipping,
+                    status: 'Processing'
+                };
+                
+                // Add to beginning of array
+                orderHistory.unshift(newOrder);
+                
+                // Save back to localStorage
+                localStorage.setItem('orderHistory', JSON.stringify(orderHistory));
+                
+                console.log('Order saved to history:', newOrder);
+                
+                // Clear the cart
+                localStorage.setItem('cart', JSON.stringify([]));
+                
+                // Update cart badge
+                const badge = document.getElementById('badge');
+                if (badge) {
+                    badge.textContent = '0';
+                }
+            } catch (error) {
+                console.error('Error saving order to history:', error);
+            }
+        }
+    </script>
+</body>
+</html>
