@@ -67,11 +67,7 @@ http://localhost/Online-Fashion-Store
 
 ## 🔧 Configuration
 
-1. Default test account:
-   - Email: 123
-   - Password: 123
-
-2. To modify product data:
+1. To modify product data:
    - Update the products in the content.js file
    - Images should be placed in the img/ directory
 
@@ -119,10 +115,6 @@ http://localhost/Online-Fashion-Store
 ![Screenshot 2025-05-18 171628](img/Screenshot%202025-05-18%20171628.png)
 ![Screenshot 2025-05-18 174604](img/Screenshot%202025-05-18%20174604.png)
 ![Screenshot 2025-05-18 175313](img/Screenshot%202025-05-18%20175313.png)
-
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## 🏫 Academic Project
 
